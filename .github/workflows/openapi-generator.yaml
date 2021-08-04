@@ -177,6 +177,8 @@ jobs:
             ${{ runner.os }}-test-maven-plugin-
       - name: Run tests
         run: |
+          mvn clean install -DskipTests=true
+          cp modules/openapi-generator-maven-plugin/target/openapi-generator-maven-plugin-5.2.1-SNAPSHOT.jar ~/.m2/repository/org/openapitools/openapi-generator-maven-plugin/5.2.1-SNAPSHOT/
           mvn --no-snapshot-updates --quiet clean compile -f modules/openapi-generator-maven-plugin/examples/java-client.xml -Dorg.slf4j.simpleLogger.defaultLogLevel=error
           mvn --no-snapshot-updates --quiet clean compile -f modules/openapi-generator-maven-plugin/examples/multi-module/pom.xml -Dorg.slf4j.simpleLogger.defaultLogLevel=error
           mvn --no-snapshot-updates --quiet clean compile -f modules/openapi-generator-maven-plugin/examples/kotlin.xml -Dorg.slf4j.simpleLogger.defaultLogLevel=error
